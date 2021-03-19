@@ -57,12 +57,17 @@ const gameBoard = (() => {
 const displayController = (() => {
     const _squares = document.querySelectorAll('[data-square]');
     const _messageContainer = document.querySelector('#message p');
+    const _newGameBtn = document.querySelector('#newGame');
 
     _squares.forEach(square => {
-        square.addEventListener('click', function(event) {
+        square.addEventListener('click', () => {
             if (gameController.getGameOver() || square.innerText) return;
             gameController.playerMove(square.dataset.square);
         });
+    });
+
+    _newGameBtn.addEventListener('click', () => {
+        gameController.newGame();
     });
 
     const updateMessage = msg => {
@@ -150,6 +155,7 @@ const gameController = (() => {
         _playerO.clearMoves();
         _currentPlayer = _playerX;
         displayController.resetBoard();
+        displayController.updateMessage(`Click a square on the board to start!`);
     }
 
     return {

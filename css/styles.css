@@ -43,3 +43,26 @@ main {
 .square:hover {
     background-color: #202020;
 }
+
+#buttonRow {
+    width: 100%;
+    text-align: center;
+    padding: 1em;
+}
+
+button#newGame {
+    font-family: 'Rajdhani', sans-serif;
+    background-color: transparent;
+    outline: none;
+    border: 2px solid #202020;
+    border-radius: 5px;
+    padding: 0.6em;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+button#newGame:hover {
+    background-color: #505050;
+    color: #d2d2d2;
+    cursor: pointer;
+}
