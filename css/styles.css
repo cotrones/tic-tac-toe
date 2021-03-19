@@ -1,6 +1,14 @@
 body {
     font-family: 'Rajdhani', sans-serif;
     background-color: #d2d2d2;
+}
+
+header {
+    text-align: center;
+    font-size: 2rem;
+}
+
+main {
     display: flex;
     justify-content: center;
 }
@@ -11,7 +19,7 @@ body {
     gap: 0.25em;
 }
 
-.gameSquare {
+.square {
     background-color: #505050;
     height: 100px;
     width: 100px;
@@ -24,6 +32,6 @@ body {
     color: #d2d2d2;
 }
 
-.gameSquare:hover {
+.square:hover {
     background-color: #202020;
 }

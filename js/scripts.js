@@ -6,9 +6,8 @@ const gameBoard = (() => {
         for (let [key, value] of _gameBoard.entries()) {
             const boardSquare = document.createElement('div');
             boardSquare.dataset.index = key;
-            boardSquare.classList.add('gameSquare');
+            boardSquare.classList.add('square');
             container.append(boardSquare);
-            console.log(key);
         }
     })();
 
