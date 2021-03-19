@@ -1,3 +1,30 @@
+const player = (name, piece) => {
+    const moves = [];
+
+    const getName = () => {
+        return name;
+    }
+
+    const getMoves = () => {
+        return moves;
+    }
+
+    const setMove = move => {
+        moves.push(move);
+    }
+
+    const getPiece = () => {
+        return piece;
+    }
+
+    return {
+        getName,
+        getMoves,
+        setMove,
+        getPiece
+    }
+}
+
 const gameBoard = (() => {
     const _gameBoard = new Array(9);
 
@@ -48,30 +75,3 @@ const displayController = (() => {
 const gameController = (() => {
 
 })();
-
-const player = (name, piece) => {
-    const moves = [];
-
-    const getName = () => {
-        return name;
-    }
-
-    const getMoves = () => {
-        return moves;
-    }
-
-    const setMove = move => {
-        moves.push(move);
-    }
-
-    const getPiece = () => {
-        return piece;
-    }
-
-    return {
-        getName,
-        getMoves,
-        setMove,
-        getPiece
-    }
-}
