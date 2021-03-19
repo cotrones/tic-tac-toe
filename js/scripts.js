@@ -37,8 +37,16 @@ const displayController = (() => {
         });
     });
 
+    const updateBoard = (() => {
+        for (let [index, value] of squares.entries()) {
+            if (gameBoard.getValue(index)) {
+                value.innerText = gameBoard.getValue(index);
+            }
+        }
+    });
+
     return {
-        
+        updateBoard
     }
 })();
 
