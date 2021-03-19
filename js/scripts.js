@@ -1,4 +1,4 @@
-const player = (name, piece) => {
+const player = (piece, name = `Player ${piece}`) => {
     const moves = [];
 
     const getName = () => {
@@ -54,8 +54,9 @@ const displayController = (() => {
 
     squares.forEach(square => {
         square.addEventListener('click', function(event) {
-            console.log(square.dataset.square);
-            this.innerText = "X";
+            if (!square.innerText) {
+                gameController.playerMove(square.dataset.square);
+            }
         });
     });
 
@@ -73,5 +74,23 @@ const displayController = (() => {
 })();
 
 const gameController = (() => {
+    const _playerX = player('X');
+    const _playerO = player('O');
+    let _currentPlayer = _playerX;
+
+    const _setCurrentPlayer = () => {
+        return _currentPlayer === _playerX ? _playerO : _playerX;
+    }
+
+    const playerMove = squareIndex => {
+        gameBoard.setValue(squareIndex, _currentPlayer.getPiece());
+        _currentPlayer.setMove(squareIndex);
+        displayController.updateBoard();
+        _currentPlayer = _setCurrentPlayer();
+    }
+
+    return {
+        playerMove
+    }
 
 })();
