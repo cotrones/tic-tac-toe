@@ -89,6 +89,28 @@ const gameController = (() => {
     const _playerX = player('X');
     const _playerO = player('O');
     let _currentPlayer = _playerX;
+    let _round = 0;
+
+    const _winningCombos = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+    ];
+
+    const _checkWinner = (player) => {
+        let result = false;
+        _winningCombos.forEach(combo => {
+            if (combo.every(move => player.getMoves().includes(move))) {
+                result = true;
+            }
+        });
+        return result;
+    }
 
     const _setCurrentPlayer = () => {
         return _currentPlayer === _playerX ? _playerO : _playerX;
@@ -96,9 +118,16 @@ const gameController = (() => {
 
     const playerMove = squareIndex => {
         gameBoard.setValue(squareIndex, _currentPlayer.getPiece());
-        _currentPlayer.setMove(squareIndex);
+        _currentPlayer.setMove(parseInt(squareIndex));
         displayController.updateBoard();
-        _currentPlayer = _setCurrentPlayer();
+        console.log(_checkWinner(_currentPlayer));
+        if (_checkWinner(_currentPlayer)) {
+            console.log(`${_currentPlayer.getName()} wins`);
+        } else {
+            _currentPlayer = _setCurrentPlayer();
+            _round++;
+            console.log(_round);
+        }
     }
 
     const newGame = () => {
