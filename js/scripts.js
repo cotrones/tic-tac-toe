@@ -153,6 +153,7 @@ const gameController = (() => {
         gameBoard.clearBoard();
         _playerX.clearMoves();
         _playerO.clearMoves();
+        _gameOver = false;
         _currentPlayer = _playerX;
         displayController.resetBoard();
         displayController.updateMessage(`Click a square on the board to start!`);
