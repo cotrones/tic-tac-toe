@@ -154,6 +154,7 @@ const gameController = (() => {
         _playerX.clearMoves();
         _playerO.clearMoves();
         _gameOver = false;
+        _round = 0;
         _currentPlayer = _playerX;
         displayController.resetBoard();
         displayController.updateMessage(`Click a square on the board to start!`);
