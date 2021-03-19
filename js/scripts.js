@@ -55,17 +55,22 @@ const gameBoard = (() => {
 })();
 
 const displayController = (() => {
-    const squares = document.querySelectorAll('.square');
+    const _squares = document.querySelectorAll('[data-square]');
+    const _messageContainer = document.querySelector('#message p');
 
-    squares.forEach(square => {
+    _squares.forEach(square => {
         square.addEventListener('click', function(event) {
             if (gameController.getGameOver() || square.innerText) return;
             gameController.playerMove(square.dataset.square);
         });
     });
 
+    const updateMessage = msg => {
+        _messageContainer.innerText = msg;
+    }
+
     const updateBoard = (() => {
-        for (let [index, value] of squares.entries()) {
+        for (let [index, value] of _squares.entries()) {
             if (gameBoard.getValue(index)) {
                 value.innerText = gameBoard.getValue(index);
             }
@@ -73,12 +78,13 @@ const displayController = (() => {
     });
 
     const resetBoard = () => {
-        squares.forEach(square => {
+        _squares.forEach(square => {
             square.innerText = "";
         })
     }
 
     return {
+        updateMessage,
         updateBoard,
         resetBoard
     }
@@ -122,13 +128,14 @@ const gameController = (() => {
         displayController.updateBoard();
 
         if (_checkWinner(_currentPlayer)) {
-            console.log(`${_currentPlayer.getName()} wins`);
+            displayController.updateMessage(`${_currentPlayer.getName()} wins!`);
             _gameOver = true;
         } else if (_round === 8) {
-            console.log('draw');
+            displayController.updateMessage(`It's a draw!`);
             _gameOver = true;
         } else {
             _currentPlayer = _setCurrentPlayer();
+            displayController.updateMessage(`It's ${_currentPlayer.getName()}'s turn!`)
             _round++;
         }
     }
