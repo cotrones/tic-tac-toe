@@ -1,5 +1,5 @@
 const player = (piece, name = `Player ${piece}`) => {
-    const moves = [];
+    let moves = [];
 
     const getName = () => {
         return name;
@@ -7,6 +7,10 @@ const player = (piece, name = `Player ${piece}`) => {
 
     const getMoves = () => {
         return moves;
+    }
+
+    const clearMoves = () => {
+        moves = [];
     }
 
     const setMove = move => {
@@ -20,6 +24,7 @@ const player = (piece, name = `Player ${piece}`) => {
     return {
         getName,
         getMoves,
+        clearMoves,
         setMove,
         getPiece
     }
@@ -68,8 +73,15 @@ const displayController = (() => {
         }
     });
 
+    const resetBoard = () => {
+        squares.forEach(square => {
+            square.innerText = "";
+        })
+    }
+
     return {
-        updateBoard
+        updateBoard,
+        resetBoard
     }
 })();
 
@@ -89,8 +101,17 @@ const gameController = (() => {
         _currentPlayer = _setCurrentPlayer();
     }
 
+    const newGame = () => {
+        gameBoard.clearBoard();
+        _playerX.clearMoves();
+        _playerO.clearMoves();
+        _currentPlayer = _playerX;
+        displayController.resetBoard();
+    }
+
     return {
-        playerMove
+        playerMove,
+        newGame
     }
 
 })();
