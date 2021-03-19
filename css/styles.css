@@ -1,3 +1,29 @@
 body {
     font-family: 'Rajdhani', sans-serif;
+    background-color: #d2d2d2;
+    display: flex;
+    justify-content: center;
+}
+
+#gameBoard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.25em;
+}
+
+.gameSquare {
+    background-color: #505050;
+    height: 100px;
+    width: 100px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4.5rem;
+    font-weight: bold;
+    color: #d2d2d2;
+}
+
+.gameSquare:hover {
+    background-color: #202020;
 }
