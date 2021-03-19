@@ -31,8 +31,9 @@ const displayController = (() => {
     const squares = document.querySelectorAll('.square');
 
     squares.forEach(square => {
-        square.addEventListener('click', event => {
+        square.addEventListener('click', function(event) {
             console.log(square.dataset.square);
+            this.innerText = "X";
         });
     });
 
