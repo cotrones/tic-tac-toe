@@ -1,10 +1,6 @@
 const gameBoard = (() => {
     const _gameBoard = new Array(9);
 
-    const getBoard = () => {
-        return _gameBoard;
-    }
-
     const getValue = index => {
         return _gameBoard[index];
     }
@@ -20,7 +16,6 @@ const gameBoard = (() => {
     }
 
     return {
-        getBoard,
         getValue,
         setValue,
         clearBoard
