@@ -49,12 +49,24 @@ const gameController = (() => {
 
 })();
 
-const player = (name) => {
+const player = (name, piece) => {
+    const moves = [];
+
     const getName = () => {
         return name;
     }
 
+    const getMoves = () => {
+        return moves;
+    }
+
+    const getPiece = () => {
+        return piece;
+    }
+
     return {
-        getName
+        getName,
+        getMoves,
+        getPiece
     }
 }
