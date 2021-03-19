@@ -60,6 +60,10 @@ const player = (name, piece) => {
         return moves;
     }
 
+    const setMove = move => {
+        moves.push(move);
+    }
+
     const getPiece = () => {
         return piece;
     }
@@ -67,6 +71,7 @@ const player = (name, piece) => {
     return {
         getName,
         getMoves,
+        setMove,
         getPiece
     }
 }
