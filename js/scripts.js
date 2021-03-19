@@ -1,20 +1,20 @@
 const player = (piece, name = `Player ${piece}`) => {
-    let moves = [];
+    let _moves = [];
 
     const getName = () => {
         return name;
     }
 
     const getMoves = () => {
-        return moves;
+        return _moves;
     }
 
     const clearMoves = () => {
-        moves = [];
+        _moves = [];
     }
 
     const setMove = move => {
-        moves.push(move);
+        _moves.push(move);
     }
 
     const getPiece = () => {
