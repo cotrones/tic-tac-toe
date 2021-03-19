@@ -42,9 +42,16 @@ const displayController = (() => {
     }
 })();
 
-const player = () => {
+const gameController = (() => {
+
+})();
+
+const player = (name) => {
+    const getName = () => {
+        return name;
+    }
 
     return {
-
+        getName
     }
 }
