@@ -30,21 +30,9 @@ const gameBoard = (() => {
 const displayController = (() => {
     const squares = document.querySelectorAll('.square');
 
-    const renderGameBoard = (() => {
-        const board = gameBoard.getBoard();
-        for (let [key, value] of board.entries()) {
-            const container = document.querySelector('#gameBoard');
-            const boardSquare = document.createElement('div');
-
-            boardSquare.dataset.index = key;
-            boardSquare.classList.add('square');
-            container.append(boardSquare);
-        }
-    })();
-
     squares.forEach(square => {
         square.addEventListener('click', event => {
-            console.log(square.dataset.index);
+            console.log(square.dataset.square);
         });
     });
 
