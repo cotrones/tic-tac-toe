@@ -59,9 +59,8 @@ const displayController = (() => {
 
     squares.forEach(square => {
         square.addEventListener('click', function(event) {
-            if (!square.innerText) {
-                gameController.playerMove(square.dataset.square);
-            }
+            if (gameController.getGameOver() || square.innerText) return;
+            gameController.playerMove(square.dataset.square);
         });
     });
 
@@ -90,6 +89,7 @@ const gameController = (() => {
     const _playerO = player('O');
     let _currentPlayer = _playerX;
     let _round = 0;
+    let _gameOver = false;
 
     const _winningCombos = [
         [0, 1, 2],
@@ -120,14 +120,21 @@ const gameController = (() => {
         gameBoard.setValue(squareIndex, _currentPlayer.getPiece());
         _currentPlayer.setMove(parseInt(squareIndex));
         displayController.updateBoard();
-        console.log(_checkWinner(_currentPlayer));
+
         if (_checkWinner(_currentPlayer)) {
             console.log(`${_currentPlayer.getName()} wins`);
+            _gameOver = true;
+        } else if (_round === 8) {
+            console.log('draw');
+            _gameOver = true;
         } else {
             _currentPlayer = _setCurrentPlayer();
             _round++;
-            console.log(_round);
         }
+    }
+
+    const getGameOver = () => {
+        return _gameOver;
     }
 
     const newGame = () => {
@@ -140,6 +147,7 @@ const gameController = (() => {
 
     return {
         playerMove,
+        getGameOver,
         newGame
     }
 
